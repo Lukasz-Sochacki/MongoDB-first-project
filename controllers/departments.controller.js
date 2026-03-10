@@ -64,7 +64,7 @@ exports.delete = async (req, res) => {
   try {
     const deletedDep = await Department.findByIdAndDelete(req.params.id);
     if (deletedDep) {
-      res.json(deletedDep);
+      res.json({ message: 'OK - delete' });
     } else {
       res.status(404).json({ message: 'Not found...' });
     }
