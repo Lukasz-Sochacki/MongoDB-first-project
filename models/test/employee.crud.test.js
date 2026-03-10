@@ -52,6 +52,14 @@ describe('Employee', () => {
       const employee = await Employee.findOne({ firstName: 'John' });
       expect(employee.firstName).to.be.equal('John');
     });
+
+    it('should return employee data with populated department', async () => {
+      const employees = await Employee.find().populate('department');
+      for (let employee of employees) {
+        expect(employee.department).to.be.an('object');
+        expect(employee.department).to.have.property('name');
+      }
+    });
   });
 
   describe('Creating data', () => {
